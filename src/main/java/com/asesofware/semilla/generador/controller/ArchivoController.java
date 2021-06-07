@@ -17,6 +17,9 @@ public class ArchivoController {
 	@Autowired
 	private IArchivoService archivoService;
 	
+	
+	
+	
 	@GetMapping(path = "/todos")
 	public List<ArchivoEntity> consultarTodos(){
 		return archivoService.getAll();
