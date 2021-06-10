@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asesofware.semilla.generador.dto.ResponseDTO;
+import com.asesofware.semilla.generador.dto.UsuarioDTO;
 import com.asesofware.semilla.generador.entity.UsuarioEntity;
 import com.asesofware.semilla.generador.service.IUsuarioService;
 
@@ -26,14 +28,14 @@ public class UsuarioController {
 	/// listar todos//
 	
 	@GetMapping(path = "/all")
-	public List<UsuarioEntity> getAll(){
+	public ResponseDTO getAll(){
 		return usuarioService.getAll();
 	}
 	
 	// listar un usuario por ID
 	// se tiene que coincidir el nombre del parametro
 	@GetMapping(path = "/usuario/{id}")
-	public UsuarioEntity getUsuarioById(@PathVariable Integer id) {
+	public ResponseDTO getUsuarioById(@PathVariable Integer id) {
 		
 		return usuarioService.getUsuarioById(id);
 	}
@@ -41,7 +43,7 @@ public class UsuarioController {
 	//sin poner el parametro por la URL desde getMapin 
 	
 	@GetMapping(path = "/usuario")
-	public UsuarioEntity getUsuarioParametroById(@RequestParam Integer id) {
+	public ResponseDTO getUsuarioParametroById(@RequestParam Integer id) {
 		
 		return usuarioService.getUsuarioById(id);
 	}
@@ -51,14 +53,11 @@ public class UsuarioController {
 	
 	@PostMapping(path = "/crear", consumes = "application/json",produces = "application/json")
 	
-	public UsuarioEntity createUser(@RequestBody UsuarioEntity entity) {
+	public ResponseDTO createUser(@RequestBody UsuarioDTO entity) {
 		
-		try {
 			return usuarioService.createUser(entity);
 			
-		}catch (Exception e) {
-			return null;
-		}
+		
 		
 		
 	}
@@ -67,7 +66,7 @@ public class UsuarioController {
 	
 	@PostMapping(path = "/editar", consumes = "application/json",produces = "application/json")
 	
-	public UsuarioEntity editarUser(@RequestBody UsuarioEntity entity) {
+	public ResponseDTO editarUser(@RequestBody UsuarioDTO entity) {
 		
 			return usuarioService.updateUser(entity);
 			
@@ -76,9 +75,9 @@ public class UsuarioController {
 	// eliminar usuario por ID
 	
 	@GetMapping(path = "/delete/{id}")
-	public void eliminarUsuario(@PathVariable Integer id) {
+	public ResponseDTO eliminarUsuario(@PathVariable Integer id) {
 		
-		usuarioService.deleteUser(id);
+		return usuarioService.deleteUser(id);
 		
 		
 	}

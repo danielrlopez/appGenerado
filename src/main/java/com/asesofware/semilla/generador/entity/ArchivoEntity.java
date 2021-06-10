@@ -1,11 +1,15 @@
 package com.asesofware.semilla.generador.entity;
 
+
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -25,6 +29,16 @@ public class ArchivoEntity {
 	private String nombre;
 	
 	@Column(name = "usuario_creador")
-	private String usuarioCreador;
+	private Integer usuarioCreador;
+	
+	//conversion fecha de forma correcta 
+	@Column(name = "fecha")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha;
+	
+	@Column(name = "hora")
+	@Temporal(TemporalType.TIME)
+	private Date hora;
+	
 
 }
