@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asesofware.semilla.generador.dto.ArchivoDTO;
+import com.asesofware.semilla.generador.dto.ResponseDTO;
 import com.asesofware.semilla.generador.entity.ArchivoEntity;
 import com.asesofware.semilla.generador.service.IArchivoService;
 
@@ -37,6 +39,19 @@ public class ArchivoController {
 	}
 	
 	
+	// consuktar nuestro archivos por usuario creador 
+	@GetMapping(path = "/todos/{usuarioCreador}")
+	public ResponseDTO consultarTodosCreador(@PathVariable Integer usuarioCreador){
+		return archivoService.consultarTodosCreador(usuarioCreador);
+	}
+	
+	
+	// consuktar archivos por nombre del usuario
+	@GetMapping(path = "/usuario")
+	public ResponseDTO consultarTodosNombre(@RequestParam String nombreUsuario){
+		return archivoService.consultarTodosNombre(nombreUsuario);
+
+	}
 	
 
 }

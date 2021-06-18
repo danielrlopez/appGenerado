@@ -19,6 +19,6 @@ public class UsuarioDTO {
 	
 	private String username;
 	
-	private List<ArchivoDTO> archivos;
+	//private List<ArchivoDTO> archivos;
 
 }
